@@ -130,17 +130,21 @@
 				<div>
 					<div>
 						<h2>Messages</h2>
-						<Editor doc={messages} onChange={changeHandlerMessage}></Editor>
+						<div class="editor">
+							<Editor doc={messages} onChange={changeHandlerMessage}></Editor>
+						</div>
 					</div>
 					<div>
 						<h2>Response</h2>
-						<Editor doc={response} onChange={changeHandlerResponse}></Editor>
+						<div class="editor">
+							<Editor doc={response} onChange={changeHandlerResponse}></Editor>
+						</div>
 					</div>
 				</div>
 			</div>
 			<div class="arrow arrow-pc">→</div>
 			<div class="arrow arrow-sp">↓</div>
-			<div class="editor-wrapper">
+			<div class="editor-wrapper chat-wrapper">
 				<Chat messages={chat} />
 			</div>
 		</section>
@@ -235,6 +239,16 @@
 
 	.editors > .editor-wrapper > div {
 		width: 100%;
+	}
+
+	.editor {
+		max-height: calc(50vh - 144px);
+		overflow: auto;
+	}
+
+	.chat-wrapper {
+		max-height: calc(100vh - 184px);
+		overflow: auto;
 	}
 
 	@media (max-width: 767px) {

@@ -34,6 +34,7 @@
 	.message-wrapper {
 		display: inline-flex;
 		width: 100%;
+		padding-bottom: 12px;
 	}
 
 	.message {
