@@ -4,4 +4,4 @@ This is utility to visualize OpenAI Chat completions API's messages and response
 
 # Playground
 
-TBD
+https://baseballyama.github.io/openai-chat-visualizar/
