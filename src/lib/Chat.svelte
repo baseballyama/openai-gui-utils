@@ -3,7 +3,7 @@
 </script>
 
 <div class="chat-wrapper">
-	{#each messages as message}
+	{#each messages as message, index (index)}
 		<div class="message-wrapper">
 			{#if message.role === 'assistant'}
 				<img src="openai.png" alt="openai" width="16" height="16" />
@@ -11,9 +11,9 @@
 			<div class="message {message.role}">
 				<div>
 					{#if message.role === 'system'}
-						<div class="message-content">{message.role}: {message.content}</div>
+						<pre class="message-content">{message.role}: {message.content}</pre>
 					{:else}
-						<div class="message-content">{message.content}</div>
+						<pre class="message-content">{message.content}</pre>
 					{/if}
 				</div>
 			</div>
@@ -83,5 +83,9 @@
 		-webkit-transform: translateY(-50%);
 		transform: translateY(-50%);
 		transform: rotate(225deg);
+	}
+
+	pre {
+		white-space: pre-wrap;
 	}
 </style>

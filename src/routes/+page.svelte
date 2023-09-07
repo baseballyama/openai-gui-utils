@@ -54,24 +54,38 @@
 	);
 
 	$: chat = (() => {
+		console.log('aaaa');
 		const res = JSON.parse(response);
-		return [...JSON.parse(messages), res.choices[0].message] as InstanceType<
+		const getMessage = () => {
+			const { choices } = res;
+			if (!choices || choices.length === 0) return undefined;
+			const { message } = choices[0];
+			return message;
+		};
+		const parsed = JSON.parse(messages);
+
+		return [...(Array.isArray(parsed) ? parsed : []), getMessage()].filter(Boolean) as InstanceType<
 			typeof Chat
 		>['messages'];
 	})();
 
-	const changeHandler = (editor: EditorView, tr: Transaction) => {
+	const changeHandler = (
+		editor: EditorView,
+		tr: Transaction,
+		original: string,
+		setUpdated: (updated: string) => void
+	) => {
 		try {
 			const parsed = JSON.parse(tr.state.doc.toString());
 			const newMessages = JSON.stringify(parsed, null, 2);
-			if (newMessages !== messages) {
+			if (newMessages !== original) {
 				const newPosition = tr.state.selection.ranges[0].from;
-				messages = newMessages;
+				setUpdated(newMessages);
 				editor.dispatch({
 					changes: {
 						from: 0,
 						to: editor.state.doc.length,
-						insert: messages
+						insert: newMessages
 					}
 				});
 				editor.dispatch({
@@ -84,6 +98,18 @@
 		} catch (e) {
 			/* do nothing */
 		}
+	};
+
+	const changeHandlerMessage = (editor: EditorView, tr: Transaction) => {
+		changeHandler(editor, tr, messages, (updated) => {
+			messages = updated;
+		});
+	};
+
+	const changeHandlerResponse = (editor: EditorView, tr: Transaction) => {
+		changeHandler(editor, tr, response, (updated) => {
+			response = updated;
+		});
 	};
 </script>
 
@@ -104,11 +130,11 @@
 				<div>
 					<div>
 						<h2>Messages</h2>
-						<Editor doc={messages} onChange={changeHandler}></Editor>
+						<Editor doc={messages} onChange={changeHandlerMessage}></Editor>
 					</div>
 					<div>
 						<h2>Response</h2>
-						<Editor doc={response} onChange={changeHandler}></Editor>
+						<Editor doc={response} onChange={changeHandlerResponse}></Editor>
 					</div>
 				</div>
 			</div>
@@ -204,7 +230,7 @@
 		padding: 8px;
 		border: 1px solid #ccc;
 		border-radius: 8px;
-		max-width: calc(50vw - 32px);
+		max-width: calc(50vw - 72px);
 	}
 
 	.editors > .editor-wrapper > div {
