@@ -91,11 +91,11 @@
 	<div class="content">
 		<header class="header">
 			<div>
-				<h1>OpenAI Chat completions API Visualizar</h1>
+				<h1>OpenAI Chat completions API Visualizer</h1>
 				<p>Visualize Chat completions API's messages and response.</p>
 			</div>
 			<div class="gh-wrapper">
-				<GitHub href="https://github.com/baseballyama/openai-chat-visualizar" />
+				<GitHub href="https://github.com/baseballyama/openai-chat-visualizer" />
 			</div>
 		</header>
 

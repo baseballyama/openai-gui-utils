@@ -1,5 +1,5 @@
 {
-	"name": "openai-prompt-visualizar",
+	"name": "openai-prompt-visualizer",
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
