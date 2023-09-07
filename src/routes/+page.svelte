@@ -1,0 +1,231 @@
+<script lang="ts">
+	import type { EditorView } from 'codemirror';
+	import type { Transaction } from '@codemirror/state';
+	import Editor from '$lib/Editor.svelte';
+	import GitHub from '$lib/GitHub.svelte';
+	import Chat from '$lib/Chat.svelte';
+	let messages = JSON.stringify(
+		[
+			{
+				role: 'system',
+				content: 'You are call center assistant.'
+			},
+			{ role: 'user', content: 'Hi!' },
+			{ role: 'assistant', content: 'Thank you for calling. May I help you?' },
+			{ role: 'user', content: 'Please tell me how to fix xxx?' }
+		],
+		null,
+		2
+	);
+	let response = JSON.stringify(
+		{
+			id: 'chatcmpl-xxx',
+			model: 'gpt-35-turbo',
+			usage: { total_tokens: 100, prompt_tokens: 100, completion_tokens: 3 },
+			object: 'chat.completion',
+			choices: [
+				{
+					index: 0,
+					message: { role: 'assistant', content: 'You can do xxx!' },
+					finish_reason: 'stop',
+					content_filter_results: {
+						hate: { filtered: false, severity: 'safe' },
+						sexual: { filtered: false, severity: 'safe' },
+						violence: { filtered: false, severity: 'safe' },
+						self_harm: { filtered: false, severity: 'safe' }
+					}
+				}
+			],
+			created: 1693666251,
+			prompt_annotations: [
+				{
+					prompt_index: 0,
+					content_filter_results: {
+						hate: { filtered: false, severity: 'safe' },
+						sexual: { filtered: false, severity: 'safe' },
+						violence: { filtered: false, severity: 'safe' },
+						self_harm: { filtered: false, severity: 'safe' }
+					}
+				}
+			]
+		},
+		null,
+		2
+	);
+
+	$: chat = (() => {
+		const res = JSON.parse(response);
+		return [...JSON.parse(messages), res.choices[0].message] as InstanceType<
+			typeof Chat
+		>['messages'];
+	})();
+
+	const changeHandler = (editor: EditorView, tr: Transaction) => {
+		try {
+			const parsed = JSON.parse(tr.state.doc.toString());
+			const newMessages = JSON.stringify(parsed, null, 2);
+			if (newMessages !== messages) {
+				const newPosition = tr.state.selection.ranges[0].from;
+				messages = newMessages;
+				editor.dispatch({
+					changes: {
+						from: 0,
+						to: editor.state.doc.length,
+						insert: messages
+					}
+				});
+				editor.dispatch({
+					selection: {
+						anchor: newPosition,
+						head: newPosition
+					}
+				});
+			}
+		} catch (e) {
+			/* do nothing */
+		}
+	};
+</script>
+
+<div class="wrapper">
+	<div class="content">
+		<header class="header">
+			<div>
+				<h1>OpenAI Chat completions API Visualizar</h1>
+				<p>Visualize Chat completions API's messages and response.</p>
+			</div>
+			<div class="gh-wrapper">
+				<GitHub href="https://github.com/baseballyama/openai-chat-visualizar" />
+			</div>
+		</header>
+
+		<section class="editors">
+			<div class="editor-wrapper">
+				<div>
+					<div>
+						<h2>Messages</h2>
+						<Editor doc={messages} onChange={changeHandler}></Editor>
+					</div>
+					<div>
+						<h2>Response</h2>
+						<Editor doc={response} onChange={changeHandler}></Editor>
+					</div>
+				</div>
+			</div>
+			<div class="arrow arrow-pc">→</div>
+			<div class="arrow arrow-sp">↓</div>
+			<div class="editor-wrapper">
+				<Chat messages={chat} />
+			</div>
+		</section>
+	</div>
+
+	<footer class="footer">
+		<a href="https://github.com/baseballyama" target="_blank" rel="noopener noreferrer">
+			Created by baseballyama
+		</a>
+	</footer>
+</div>
+
+<style>
+	:global(body) {
+		margin: 0;
+		padding: 0;
+	}
+
+	h1,
+	h2 {
+		margin: 0;
+		padding: 8px 0;
+	}
+
+	p {
+		margin: 0;
+		padding: 0;
+	}
+
+	.wrapper {
+		height: 100vh;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.content {
+		flex: 1 0 auto;
+	}
+
+	.footer {
+		width: calc(100% - 32px);
+		padding: 8px 16px;
+		text-align: center;
+		flex-shrink: 0;
+	}
+
+	.header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin: 8px 16px;
+	}
+
+	.gh-wrapper {
+		margin-left: 16px;
+		height: 32px;
+		width: 32px;
+	}
+
+	.editors {
+		display: flex;
+	}
+
+	.editors > * {
+		display: flex;
+		align-items: top;
+	}
+
+	.editors > .arrow {
+		font-size: 24px;
+		font-weight: 900;
+	}
+
+	.editors > .arrow-pc {
+		height: 100%;
+		margin: auto 8px;
+	}
+
+	.editors > .arrow-sp {
+		margin: 8px auto;
+	}
+
+	.editors > .editor-wrapper {
+		flex: 1;
+		margin: 8px;
+		padding: 8px;
+		border: 1px solid #ccc;
+		border-radius: 8px;
+		max-width: calc(50vw - 32px);
+	}
+
+	.editors > .editor-wrapper > div {
+		width: 100%;
+	}
+
+	@media (max-width: 767px) {
+		.editors {
+			flex-direction: column;
+		}
+		.arrow-pc {
+			display: none;
+		}
+	}
+
+	@media (min-width: 768px) {
+		.editors {
+			flex-direction: row;
+		}
+		.arrow-sp {
+			display: none;
+		}
+	}
+</style>
