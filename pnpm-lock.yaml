@@ -24,10 +24,10 @@ dependencies:
 devDependencies:
   '@sveltejs/adapter-static':
     specifier: 2.0.3
-    version: 2.0.3(@sveltejs/kit@1.29.1)
+    version: 2.0.3(@sveltejs/kit@1.30.3)
   '@sveltejs/kit':
-    specifier: 1.29.1
-    version: 1.29.1(svelte@4.2.8)(vite@5.0.10)
+    specifier: 1.30.3
+    version: 1.30.3(svelte@4.2.8)(vite@5.0.10)
   '@typescript-eslint/eslint-plugin':
     specifier: 6.14.0
     version: 6.14.0(@typescript-eslint/parser@6.14.0)(eslint@8.55.0)(typescript@5.3.3)
@@ -596,16 +596,16 @@ packages:
     dev: true
     optional: true
 
-  /@sveltejs/adapter-static@2.0.3(@sveltejs/kit@1.29.1):
+  /@sveltejs/adapter-static@2.0.3(@sveltejs/kit@1.30.3):
     resolution: {integrity: sha512-VUqTfXsxYGugCpMqQv1U0LIdbR3S5nBkMMDmpjGVJyM6Q2jHVMFtdWJCkeHMySc6mZxJ+0eZK3T7IgmUCDrcUQ==}
     peerDependencies:
       '@sveltejs/kit': ^1.5.0
     dependencies:
-      '@sveltejs/kit': 1.29.1(svelte@4.2.8)(vite@5.0.10)
+      '@sveltejs/kit': 1.30.3(svelte@4.2.8)(vite@5.0.10)
     dev: true
 
-  /@sveltejs/kit@1.29.1(svelte@4.2.8)(vite@5.0.10):
-    resolution: {integrity: sha512-zbHS6hy2OZLWTmkTktx7jpPaE5Qg9tk3li+wh06ISSLEYeiPrLlPMuhzmI2gM5d6ParNfDx7YCiPTeRr23IpMw==}
+  /@sveltejs/kit@1.30.3(svelte@4.2.8)(vite@5.0.10):
+    resolution: {integrity: sha512-0DzVXfU4h+tChFvoc8C61IqErCyskD4ydSIDjpKS2lYlEzIYrtYrY7juSqACFxqcvZAnOEXvSY+zZ8br0+ZMMg==}
     engines: {node: ^16.14 || >=18}
     hasBin: true
     requiresBuild: true
