@@ -6,7 +6,7 @@ OpenAI GUI Utils is a utility designed to visualize the messages and responses f
 
 ## Live Demo
 
-Experience it live at: [OpenAI GUI Utils Playground](https://baseballyama.github.io/openai-chat-visualizer/)
+Experience it live at: [OpenAI GUI Utils Playground](https://baseballyama.github.io/openai-gui-utils/)
 
 ## Features
 
