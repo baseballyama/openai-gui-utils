@@ -6,8 +6,8 @@
 	<p>I'm using them in my daily work.</p>
 
 	<div class="buttons">
-		<a href="/completions">Completion API Visualizer</a>
-		<a href="/embeddings">Embeddings and Cosine Similarity Checker</a>
+		<a href="completions">Completion API Visualizer</a>
+		<a href="embeddings">Embeddings and Cosine Similarity Checker</a>
 	</div>
 </div>
 

@@ -1,16 +1,17 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { base } from '$app/paths';
 	import GitHub from '$lib/GitHub.svelte';
+
+	$: path = $page.url.pathname.replace(base, '');
 </script>
 
 <header>
 	<h1>OpenAI GUI Utils</h1>
 	<nav>
-		<a href="/" class:selected={$page.url.pathname === '/'}>Home</a>
-		<a href="/completions" class:selected={$page.url.pathname === '/completions'}
-			>Completion API Visualizer</a
-		>
-		<a href="/embeddings" class:selected={$page.url.pathname === '/embeddings'}
+		<a href="./" class:selected={path === '/'}>Home</a>
+		<a href="completions" class:selected={path === '/completions'}>Completion API Visualizer</a>
+		<a href="embeddings" class:selected={path === '/embeddings'}
 			>Embeddings and Cosine Similarity Checker</a
 		>
 	</nav>
