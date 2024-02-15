@@ -20,5 +20,11 @@
 	"patch": {
 		"stabilityDays": 3
 	},
-	"ignoreTests": false
+	"ignoreTests": false,
+	 "packageRules": [
+    {
+      "matchPackagePatterns": ["@codemirror"],
+      "groupName": "@codemirror"
+    }
+  ]
 }
