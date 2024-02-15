@@ -5,8 +5,8 @@
 <a {href} target="_blank" rel="noopener noreferrer">
 	<svg
 		version="1.1"
-		width="16"
-		height="16"
+		width="32"
+		height="32"
 		viewBox="0 0 16 16"
 		class="octicon octicon-mark-github svelte-92nypd"
 		aria-hidden="true"

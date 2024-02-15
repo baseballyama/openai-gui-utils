@@ -11,7 +11,7 @@
 			<div class="message {message.role}">
 				<div>
 					{#if message.role === 'system'}
-						<pre class="message-content">{message.role}: {message.content}</pre>
+						<pre class="message-content">{message.role.toUpperCase()}: {message.content}</pre>
 					{:else}
 						<pre class="message-content">{message.content}</pre>
 					{/if}

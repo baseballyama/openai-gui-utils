@@ -1,271 +1,44 @@
-<script lang="ts">
-	import type { EditorView } from 'codemirror';
-	import type { Transaction } from '@codemirror/state';
-	import Editor from '$lib/Editor.svelte';
-	import GitHub from '$lib/GitHub.svelte';
-	import Chat from '$lib/Chat.svelte';
-	let messages = JSON.stringify(
-		[
-			{
-				role: 'system',
-				content: 'You are call center assistant.'
-			},
-			{ role: 'user', content: 'Hi!' },
-			{ role: 'assistant', content: 'Thank you for calling. May I help you?' },
-			{ role: 'user', content: 'Please tell me how to fix xxx?' }
-		],
-		null,
-		2
-	);
-	let response = JSON.stringify(
-		{
-			id: 'chatcmpl-xxx',
-			model: 'gpt-35-turbo',
-			usage: { total_tokens: 100, prompt_tokens: 100, completion_tokens: 3 },
-			object: 'chat.completion',
-			choices: [
-				{
-					index: 0,
-					message: { role: 'assistant', content: 'You can do xxx!' },
-					finish_reason: 'stop',
-					content_filter_results: {
-						hate: { filtered: false, severity: 'safe' },
-						sexual: { filtered: false, severity: 'safe' },
-						violence: { filtered: false, severity: 'safe' },
-						self_harm: { filtered: false, severity: 'safe' }
-					}
-				}
-			],
-			created: 1693666251,
-			prompt_annotations: [
-				{
-					prompt_index: 0,
-					content_filter_results: {
-						hate: { filtered: false, severity: 'safe' },
-						sexual: { filtered: false, severity: 'safe' },
-						violence: { filtered: false, severity: 'safe' },
-						self_harm: { filtered: false, severity: 'safe' }
-					}
-				}
-			]
-		},
-		null,
-		2
-	);
+<div class="top-page">
+	<p>
+		This site contains small utilities that are frequently used when developing products using
+		OpenAI.
+	</p>
+	<p>I'm using them in my daily work.</p>
 
-	$: chat = (() => {
-		console.log('aaaa');
-		const res = JSON.parse(response);
-		const getMessage = () => {
-			const { choices } = res;
-			if (!choices || choices.length === 0) return undefined;
-			const { message } = choices[0];
-			return message;
-		};
-		const parsed = JSON.parse(messages);
-
-		return [...(Array.isArray(parsed) ? parsed : []), getMessage()].filter(Boolean) as InstanceType<
-			typeof Chat
-		>['messages'];
-	})();
-
-	const changeHandler = (
-		editor: EditorView,
-		tr: Transaction,
-		original: string,
-		setUpdated: (updated: string) => void
-	) => {
-		try {
-			const parsed = JSON.parse(tr.state.doc.toString());
-			const newMessages = JSON.stringify(parsed, null, 2);
-			if (newMessages !== original) {
-				const newPosition = tr.state.selection.ranges[0].from;
-				setUpdated(newMessages);
-				editor.dispatch({
-					changes: {
-						from: 0,
-						to: editor.state.doc.length,
-						insert: newMessages
-					}
-				});
-				editor.dispatch({
-					selection: {
-						anchor: newPosition,
-						head: newPosition
-					}
-				});
-			}
-		} catch (e) {
-			/* do nothing */
-		}
-	};
-
-	const changeHandlerMessage = (editor: EditorView, tr: Transaction) => {
-		changeHandler(editor, tr, messages, (updated) => {
-			messages = updated;
-		});
-	};
-
-	const changeHandlerResponse = (editor: EditorView, tr: Transaction) => {
-		changeHandler(editor, tr, response, (updated) => {
-			response = updated;
-		});
-	};
-</script>
-
-<div class="wrapper">
-	<div class="content">
-		<header class="header">
-			<div>
-				<h1>OpenAI Chat completions API Visualizer</h1>
-				<p>Visualize Chat completions API's messages and response.</p>
-			</div>
-			<div class="gh-wrapper">
-				<GitHub href="https://github.com/baseballyama/openai-chat-visualizer" />
-			</div>
-		</header>
-
-		<section class="editors">
-			<div class="editor-wrapper">
-				<div>
-					<div>
-						<h2>Messages</h2>
-						<div class="editor">
-							<Editor doc={messages} onChange={changeHandlerMessage}></Editor>
-						</div>
-					</div>
-					<div>
-						<h2>Response</h2>
-						<div class="editor">
-							<Editor doc={response} onChange={changeHandlerResponse}></Editor>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="arrow arrow-pc">→</div>
-			<div class="arrow arrow-sp">↓</div>
-			<div class="editor-wrapper chat-wrapper">
-				<Chat messages={chat} />
-			</div>
-		</section>
+	<div class="buttons">
+		<a href="/completions">Completion API Visualizer</a>
+		<a href="/embeddings">Embeddings and Cosine Similarity Checker</a>
 	</div>
-
-	<footer class="footer">
-		<a href="https://github.com/baseballyama" target="_blank" rel="noopener noreferrer">
-			Created by baseballyama
-		</a>
-	</footer>
 </div>
 
 <style>
-	:global(body) {
-		margin: 0;
-		padding: 0;
-	}
-
-	h1,
-	h2 {
-		margin: 0;
-		padding: 8px 0;
-	}
-
-	p {
-		margin: 0;
-		padding: 0;
-	}
-
-	.wrapper {
-		height: 100vh;
-		margin: 0;
+	.top-page {
 		display: flex;
 		flex-direction: column;
-	}
-
-	.content {
-		flex: 1 0 auto;
-	}
-
-	.footer {
-		width: calc(100% - 32px);
-		padding: 8px 16px;
-		text-align: center;
-		flex-shrink: 0;
-	}
-
-	.header {
-		display: flex;
 		align-items: center;
-		justify-content: space-between;
-		margin: 8px 16px;
+		justify-content: center;
+		gap: 8px;
+		margin: 40px;
 	}
 
-	.gh-wrapper {
-		margin-left: 16px;
-		height: 32px;
-		width: 32px;
-	}
-
-	.editors {
+	.buttons {
+		margin-top: 40px;
 		display: flex;
+		gap: 24px;
 	}
 
-	.editors > * {
-		display: flex;
-		align-items: top;
+	a {
+		padding: 8px 16px;
+		border: none;
+		border-radius: 4px;
+		background-color: #d43109;
+		color: white;
+		font-size: 16px;
+		cursor: pointer;
+		text-decoration: none;
 	}
 
-	.editors > .arrow {
-		font-size: 24px;
-		font-weight: 900;
-	}
-
-	.editors > .arrow-pc {
-		height: 100%;
-		margin: auto 8px;
-	}
-
-	.editors > .arrow-sp {
-		margin: 8px auto;
-	}
-
-	.editors > .editor-wrapper {
-		flex: 1;
-		margin: 8px;
-		padding: 8px;
-		border: 1px solid #ccc;
-		border-radius: 8px;
-		max-width: calc(50vw - 72px);
-	}
-
-	.editors > .editor-wrapper > div {
-		width: 100%;
-	}
-
-	.editor {
-		max-height: calc(50vh - 144px);
-		overflow: auto;
-	}
-
-	.chat-wrapper {
-		max-height: calc(100vh - 184px);
-		overflow: auto;
-	}
-
-	@media (max-width: 767px) {
-		.editors {
-			flex-direction: column;
-		}
-		.arrow-pc {
-			display: none;
-		}
-	}
-
-	@media (min-width: 768px) {
-		.editors {
-			flex-direction: row;
-		}
-		.arrow-sp {
-			display: none;
-		}
+	a:hover {
+		background-color: #ff5a1f;
 	}
 </style>

@@ -21,10 +21,10 @@
 		"stabilityDays": 3
 	},
 	"ignoreTests": false,
-	 "packageRules": [
-    {
-      "matchPackagePatterns": ["@codemirror"],
-      "groupName": "@codemirror"
-    }
-  ]
+	"packageRules": [
+		{
+			"matchPackagePatterns": ["@codemirror"],
+			"groupName": "@codemirror"
+		}
+	]
 }
