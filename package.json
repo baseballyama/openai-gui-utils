@@ -31,10 +31,10 @@
 	"packageManager": "pnpm@8.15.5",
 	"type": "module",
 	"dependencies": {
-		"@codemirror/lang-python": "6.1.4",
+		"@codemirror/lang-python": "6.1.5",
 		"@codemirror/language": "6.10.1",
 		"@codemirror/state": "6.4.1",
-		"@codemirror/view": "6.26.0",
+		"@codemirror/view": "6.26.1",
 		"codemirror": "6.0.1"
 	}
 }
