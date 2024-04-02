@@ -7,17 +7,17 @@
 		<meta name="viewport" content="width=device-width" />
 		<title>OpenAI GUI Utils</title>
 		
-		<link href="./_app/immutable/assets/0.J5r0XgYs.css" rel="stylesheet">
-		<link href="./_app/immutable/assets/3.UiXoLPRZ.css" rel="stylesheet">
-		<link rel="modulepreload" href="./_app/immutable/entry/start.rQaNC_h4.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/entry.f3p5aKrv.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/scheduler.KqCp1VWV.js">
-		<link rel="modulepreload" href="./_app/immutable/entry/app.zUu8rMPI.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/index.Z3YDkVAm.js">
-		<link rel="modulepreload" href="./_app/immutable/nodes/0.EP6-q8ux.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/stores.eoQYpHtL.js">
-		<link rel="modulepreload" href="./_app/immutable/nodes/3.LatLfBGw.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/each.A6GNbPRI.js">
+		<link href="./_app/immutable/assets/0.nmvReBiz.css" rel="stylesheet">
+		<link href="./_app/immutable/assets/3.BSJegs9F.css" rel="stylesheet">
+		<link rel="modulepreload" href="./_app/immutable/entry/start.D6_nZ1zy.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/entry.DrM-OS7_.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/scheduler.CG7sC2st.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/app.C_7qQmwv.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index.Bv8dtsBR.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/0.DecfExBJ.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/stores.mKEgX5dR.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/3.DFDEOxw8.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/each.CL2J1vmT.js">
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">  <header class="svelte-1qgrqm"><h1 class="svelte-1qgrqm" data-svelte-h="svelte-1t6bxs0">OpenAI GUI Utils</h1> <nav class="svelte-1qgrqm"><a href="./" class="svelte-1qgrqm" data-svelte-h="svelte-gigk75">Home</a> <a href="completions" class="svelte-1qgrqm" data-svelte-h="svelte-kt52bj">Completion API Visualizer</a> <a href="embeddings" class="svelte-1qgrqm" data-svelte-h="svelte-16dt52">Embeddings and Cosine Similarity Checker</a></nav> <a href="https://github.com/baseballyama/openai-gui-utils" target="_blank" rel="noopener noreferrer"><svg version="1.1" width="32" height="32" viewBox="0 0 16 16" class="octicon octicon-mark-github svelte-92nypd svelte-1bvf986" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z" class="svelte-92nypd" style="fill: rgb(44, 62, 80);"></path></svg> </a></header> <main class="svelte-1qgrqm"><div class="wrapper svelte-u9ph9i"><div class="content svelte-u9ph9i"><section class="editors svelte-u9ph9i"><div class="editor-wrapper svelte-u9ph9i"><div class="svelte-u9ph9i"><div><h2 class="svelte-u9ph9i" data-svelte-h="svelte-ctbj3q">Messages</h2> <div class="editor svelte-u9ph9i"><div class="codemirror svelte-96yski"></div></div></div> <div><h2 class="svelte-u9ph9i" data-svelte-h="svelte-1496yt9">Response</h2> <div class="editor svelte-u9ph9i"><div class="codemirror svelte-96yski"></div></div></div></div></div> <div class="arrow arrow-pc svelte-u9ph9i" data-svelte-h="svelte-1i00401">→</div> <div class="arrow arrow-sp svelte-u9ph9i" data-svelte-h="svelte-1nbprhq">↓</div> <div class="editor-wrapper chat-wrapper svelte-u9ph9i"><div class="chat-wrapper svelte-1p3r8cg"><div class="message-wrapper svelte-1p3r8cg"> <div class="message system svelte-1p3r8cg"><div><pre class="message-content svelte-1p3r8cg">SYSTEM: You are call center assistant.</pre> </div></div>  </div><div class="message-wrapper svelte-1p3r8cg"> <div class="message user svelte-1p3r8cg"><div><pre class="message-content svelte-1p3r8cg">Hi!</pre> </div></div> <img src="user.png" alt="openai" width="16" height="16"> </div><div class="message-wrapper svelte-1p3r8cg"><img src="openai.png" alt="openai" width="16" height="16"> <div class="message assistant svelte-1p3r8cg"><div><pre class="message-content svelte-1p3r8cg">Thank you for calling. May I help you?</pre> </div></div>  </div><div class="message-wrapper svelte-1p3r8cg"> <div class="message user svelte-1p3r8cg"><div><pre class="message-content svelte-1p3r8cg">Please tell me how to fix xxx?</pre> </div></div> <img src="user.png" alt="openai" width="16" height="16"> </div><div class="message-wrapper svelte-1p3r8cg"><img src="openai.png" alt="openai" width="16" height="16"> <div class="message assistant svelte-1p3r8cg"><div><pre class="message-content svelte-1p3r8cg">You can do xxx!</pre> </div></div>  </div> </div></div></section></div> </div></main> <footer class="footer svelte-1qgrqm" data-svelte-h="svelte-1fbpllg">Created by
@@ -25,7 +25,7 @@
 			
 			<script>
 				{
-					__sveltekit_11p7qew = {
+					__sveltekit_15mrrkg = {
 						base: new URL(".", location).pathname.slice(0, -1),
 						assets: "/openai-gui-utils"
 					};
@@ -35,8 +35,8 @@
 					const data = [null,null];
 
 					Promise.all([
-						import("./_app/immutable/entry/start.rQaNC_h4.js"),
-						import("./_app/immutable/entry/app.zUu8rMPI.js")
+						import("./_app/immutable/entry/start.D6_nZ1zy.js"),
+						import("./_app/immutable/entry/app.C_7qQmwv.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 3],
