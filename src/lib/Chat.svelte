@@ -1,5 +1,6 @@
 <script lang="ts">
-	export let messages: { role: 'system' | 'user' | 'assistant'; content: string }[] = [];
+	type Props = { messages: { role: 'system' | 'user' | 'assistant'; content: string }[] };
+	let { messages }: Props = $props();
 </script>
 
 <div class="chat-wrapper">

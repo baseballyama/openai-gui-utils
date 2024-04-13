@@ -1,5 +1,6 @@
 <script lang="ts">
-	export let href: string;
+	type Props = { href: string };
+	let { href }: Props = $props();
 </script>
 
 <a {href} target="_blank" rel="noopener noreferrer">

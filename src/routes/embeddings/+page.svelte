@@ -8,17 +8,14 @@
 		similarity: number;
 	};
 
-	let openaiApiKey = '';
-	if (browser) {
-		openaiApiKey = sessionStorage.getItem('openaiApiKey') || '';
-	}
-	let openaiApiKeyInputError = '';
+	let openaiApiKey = $state(browser ? sessionStorage.getItem('openaiApiKey') || '' : '');
+	let openaiApiKeyInputError = $state('');
 	const embeddingHistories: Record<string, number[]> = {};
 
-	let taskTotal = 0;
-	let taskCompleted = 0;
+	let taskTotal = $state(0);
+	let taskCompleted = $state(0);
 
-	let rows: EmbeddingPair[] = [
+	let rows: EmbeddingPair[] = $state([
 		{
 			a: '',
 			aVector: [],
@@ -26,7 +23,7 @@
 			bVector: [],
 			similarity: 0
 		}
-	];
+	]);
 
 	const addRow = () => {
 		rows = [

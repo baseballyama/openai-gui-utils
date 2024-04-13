@@ -8,17 +8,20 @@
 
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
+	type Props = {
+		view?: EditorView;
+		doc: string;
+		verbose?: boolean;
+		onUpdate?: (tr: Transaction) => void;
+		onChange?: (editor: EditorView, tr: Transaction) => void;
+	};
 
 	const extensions = [basicSetup, python()];
 
-	export let view: EditorView | undefined = undefined;
-	export let doc: string;
-	export let verbose = false;
-	export let onUpdate: (tr: Transaction) => void = () => {};
-	export let onChange: (editor: EditorView, tr: Transaction) => void = () => {};
+	let { view, doc, verbose = false, onUpdate = () => {}, onChange = () => {} }: Props = $props();
 
 	let dom: HTMLDivElement;
-	let mounted = false;
+	let mounted = $state(false);
 
 	const editorTxHandler = (tr: Transaction, editor: EditorView) => {
 		editor.update([tr]);
@@ -26,13 +29,13 @@
 		onChange(editor, tr);
 	};
 
-	$: {
+	$effect(() => {
 		if (mounted && doc != undefined) {
 			if (view == null) {
 				view = initEditorView(doc, extensions, dom, editorTxHandler);
 			}
 		}
-	}
+	});
 
 	onMount(() => {
 		mounted = true;

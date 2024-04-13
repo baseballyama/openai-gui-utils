@@ -3,57 +3,60 @@
 	import type { Transaction } from '@codemirror/state';
 	import Editor from '$lib/Editor.svelte';
 	import Chat from '$lib/Chat.svelte';
-	let messages = JSON.stringify(
-		[
-			{
-				role: 'system',
-				content: 'You are call center assistant.'
-			},
-			{ role: 'user', content: 'Hi!' },
-			{ role: 'assistant', content: 'Thank you for calling. May I help you?' },
-			{ role: 'user', content: 'Please tell me how to fix xxx?' }
-		],
-		null,
-		2
-	);
-	let response = JSON.stringify(
-		{
-			id: 'chatcmpl-xxx',
-			model: 'gpt-35-turbo',
-			usage: { total_tokens: 100, prompt_tokens: 100, completion_tokens: 3 },
-			object: 'chat.completion',
-			choices: [
+	let messages = $state(
+		JSON.stringify(
+			[
 				{
-					index: 0,
-					message: { role: 'assistant', content: 'You can do xxx!' },
-					finish_reason: 'stop',
-					content_filter_results: {
-						hate: { filtered: false, severity: 'safe' },
-						sexual: { filtered: false, severity: 'safe' },
-						violence: { filtered: false, severity: 'safe' },
-						self_harm: { filtered: false, severity: 'safe' }
-					}
-				}
+					role: 'system',
+					content: 'You are call center assistant.'
+				},
+				{ role: 'user', content: 'Hi!' },
+				{ role: 'assistant', content: 'Thank you for calling. May I help you?' },
+				{ role: 'user', content: 'Please tell me how to fix xxx?' }
 			],
-			created: 1693666251,
-			prompt_annotations: [
-				{
-					prompt_index: 0,
-					content_filter_results: {
-						hate: { filtered: false, severity: 'safe' },
-						sexual: { filtered: false, severity: 'safe' },
-						violence: { filtered: false, severity: 'safe' },
-						self_harm: { filtered: false, severity: 'safe' }
+			null,
+			2
+		)
+	);
+	let response = $state(
+		JSON.stringify(
+			{
+				id: 'chatcmpl-xxx',
+				model: 'gpt-35-turbo',
+				usage: { total_tokens: 100, prompt_tokens: 100, completion_tokens: 3 },
+				object: 'chat.completion',
+				choices: [
+					{
+						index: 0,
+						message: { role: 'assistant', content: 'You can do xxx!' },
+						finish_reason: 'stop',
+						content_filter_results: {
+							hate: { filtered: false, severity: 'safe' },
+							sexual: { filtered: false, severity: 'safe' },
+							violence: { filtered: false, severity: 'safe' },
+							self_harm: { filtered: false, severity: 'safe' }
+						}
 					}
-				}
-			]
-		},
-		null,
-		2
+				],
+				created: 1693666251,
+				prompt_annotations: [
+					{
+						prompt_index: 0,
+						content_filter_results: {
+							hate: { filtered: false, severity: 'safe' },
+							sexual: { filtered: false, severity: 'safe' },
+							violence: { filtered: false, severity: 'safe' },
+							self_harm: { filtered: false, severity: 'safe' }
+						}
+					}
+				]
+			},
+			null,
+			2
+		)
 	);
 
-	$: chat = (() => {
-		console.log('aaaa');
+	let chat = $derived.by(() => {
 		const res = JSON.parse(response);
 		const getMessage = () => {
 			const { choices } = res;
@@ -66,7 +69,7 @@
 		return [...(Array.isArray(parsed) ? parsed : []), getMessage()].filter(Boolean) as InstanceType<
 			typeof Chat
 		>['messages'];
-	})();
+	});
 
 	const changeHandler = (
 		editor: EditorView,

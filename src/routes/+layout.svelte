@@ -3,7 +3,7 @@
 	import { base } from '$app/paths';
 	import GitHub from '$lib/GitHub.svelte';
 
-	$: path = $page.url.pathname.replace(base, '');
+	let path = $derived($page.url.pathname.replace(base, ''));
 </script>
 
 <header>
