@@ -28,7 +28,7 @@
 		"typescript": "5.4.5",
 		"vite": "5.2.12"
 	},
-	"packageManager": "pnpm@9.1.2",
+	"packageManager": "pnpm@9.1.4",
 	"type": "module",
 	"dependencies": {
 		"@codemirror/lang-python": "6.1.6",
