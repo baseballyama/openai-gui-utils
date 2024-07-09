@@ -1,2 +1,2 @@
-import{a,t as s}from"../chunks/disclose-version.Df8DT_t0.js";var t=s(`<div class="top-page svelte-1azi8io"><p>This site contains small utilities that are frequently used when developing products using
+import{a,t as s}from"../chunks/disclose-version.hGTx8sci.js";var t=s(`<div class="top-page svelte-1azi8io"><p>This site contains small utilities that are frequently used when developing products using
 		OpenAI.</p> <p>I'm using them in my daily work.</p> <div class="buttons svelte-1azi8io"><a href="completions" class="svelte-1azi8io">Completion API Visualizer</a> <a href="embeddings" class="svelte-1azi8io">Embeddings and Cosine Similarity Checker</a></div></div>`);function n(e){var i=t();a(e,i)}export{n as component};
