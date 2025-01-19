@@ -31,7 +31,7 @@
 	"packageManager": "pnpm@9.7.1",
 	"type": "module",
 	"dependencies": {
-		"@codemirror/lang-python": "6.1.6",
+		"@codemirror/lang-python": "6.1.7",
 		"@codemirror/language": "6.10.8",
 		"@codemirror/state": "6.4.1",
 		"@codemirror/view": "6.30.0",
