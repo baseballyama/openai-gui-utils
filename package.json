@@ -13,7 +13,7 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-static": "3.0.4",
-		"@sveltejs/kit": "2.5.28",
+		"@sveltejs/kit": "2.8.3",
 		"@sveltejs/vite-plugin-svelte": "5.0.3",
 		"@typescript-eslint/eslint-plugin": "7.18.0",
 		"@typescript-eslint/parser": "7.18.0",
