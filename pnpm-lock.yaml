@@ -25,8 +25,8 @@ importers:
         version: 6.0.1(@lezer/common@1.2.1)
     devDependencies:
       '@sveltejs/adapter-static':
-        specifier: 3.0.4
-        version: 3.0.4(@sveltejs/kit@2.5.28(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.0.5)(vite@6.0.5))(svelte@5.0.5)(vite@6.0.5))
+        specifier: 3.0.10
+        version: 3.0.10(@sveltejs/kit@2.5.28(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.0.5)(vite@6.0.5))(svelte@5.0.5)(vite@6.0.5))
       '@sveltejs/kit':
         specifier: 2.5.28
         version: 2.5.28(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.0.5)(vite@6.0.5))(svelte@5.0.5)(vite@6.0.5)
@@ -451,8 +451,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@sveltejs/adapter-static@3.0.4':
-    resolution: {integrity: sha512-Qm4GAHCnRXwfWG9/AtnQ7mqjyjTs7i0Opyb8H2KH9rMR7fLxqiPx/tXeoE6HHo66+72CjyOb4nFH3lrejY4vzA==}
+  '@sveltejs/adapter-static@3.0.10':
+    resolution: {integrity: sha512-7D9lYFWJmB7zxZyTE/qxjksvMqzMuYrrsyh1f4AlZqeZeACPRySjbC3aFiY55wb1tWUaKOQG9PVbm74JcN2Iew==}
     peerDependencies:
       '@sveltejs/kit': ^2.0.0
 
@@ -741,6 +741,7 @@ packages:
   eslint@9.18.0:
     resolution: {integrity: sha512-+waTfRWQlSbpt3KWE+CjrPPYnbq9kfZIYUqapc0uBXyjTp8aYXZDsUH16m39Ryq3NjAVP4tjuF7KaukeqoCoaA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
     peerDependencies:
       jiti: '*'
@@ -834,7 +835,7 @@ packages:
 
   glob@7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
-    deprecated: Glob versions prior to v9 are no longer supported
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
   globals@14.0.0:
     resolution: {integrity: sha512-oahGvuMGQlPw/ivIYBjVSrWAfWLBeku5tpPE2fOPLi+WHffIWbuh2tCjhyQhTBPMf5E9jDEH4FOmTYgYwbKwtQ==}
@@ -1649,7 +1650,7 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.31.0':
     optional: true
 
-  '@sveltejs/adapter-static@3.0.4(@sveltejs/kit@2.5.28(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.0.5)(vite@6.0.5))(svelte@5.0.5)(vite@6.0.5))':
+  '@sveltejs/adapter-static@3.0.10(@sveltejs/kit@2.5.28(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.0.5)(vite@6.0.5))(svelte@5.0.5)(vite@6.0.5))':
     dependencies:
       '@sveltejs/kit': 2.5.28(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.0.5)(vite@6.0.5))(svelte@5.0.5)(vite@6.0.5)
 
